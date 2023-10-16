@@ -129,14 +129,16 @@ header {
     position: absolute;
     bottom: 0;
     left: 0;
+    font-size: 0.05;  /* Adjusted font size */
 }
+
 
 
 #logo {
     position: fixed;
-    top: 10px; /* Adjust as needed */
-    left: 10px; /* Adjust as needed */
-    height: 50px; /* Adjust as needed */
+    top: 0px; /* Adjust as needed */
+    left: 0px; /* Adjust as needed */
+    height: 150px; /* Adjust as needed */
     width: auto;
     z-index: 1000; /* Ensures the logo stays on top of other elements */
 }
