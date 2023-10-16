@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function fetchKantoPokemon() {
-        fetch('https://pokeapi.co/api/v2/pokemon?limit=1015')
+        fetch('https://pokeapi.co/api/v2/pokemon?limit=1376')
             .then(response => response.json())
             .then(allpokemon => {
                 allPokemon = allpokemon.results;
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch("https://pokeapi.co/api/v2/type/")
             .then(response => response.json())
             .then(data => {
-                allTypes = data.results.map(type => type.name).filter(type => type !== "unknown");
+                allTypes = data.results.map(type => type.name).filter(type => type !== "unknown" && type !== "shadow");
                 shuffleArray(allTypes);
                 createGrid();
             })
@@ -120,6 +120,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 dimBackground.style.display = 'none';
                 searchBar.value = '';
                 dropdown.innerHTML = '';
+
+                const pokemonNameDisplay = document.createElement('div');
+                pokemonNameDisplay.classList.add('pokemonName');
+                pokemonNameDisplay.textContent = pokemon.name;
+                selectedInput.appendChild(pokemonNameDisplay);
+
+                // Create the hyperlink for the Pokémon's Bulbapedia page
+                const pokemonNameForURL = pokemon.name.includes('-') ? pokemon.name.split('-')[0] : pokemon.name;
+                const bulbapediaLink = `https://bulbapedia.bulbagarden.net/wiki/${pokemonNameForURL}_(Pokémon)`;
+                selectedInput.addEventListener('click', function() {
+                    window.open(bulbapediaLink, '_blank');
+                });
             }
         });
         let pokeName = document.createElement('h4');
